@@ -23,10 +23,10 @@ namespace ProcessNote
         private void GetAllProcess()
         {
             allProcess = Process.GetProcesses();
-            listBox.Items.Clear();
+            processGrid.Rows.Clear();
             foreach (var p in allProcess)
             {
-                listBox.Items.Add(p.Id + p.ProcessName);
+                processGrid.Rows.Add(p.Id, p.ProcessName);
             }
         }
 

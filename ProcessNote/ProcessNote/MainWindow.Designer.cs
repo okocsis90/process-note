@@ -28,33 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.listBox = new System.Windows.Forms.ListBox();
+            this.processGrid = new System.Windows.Forms.DataGridView();
+            this.procId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.procName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.processGrid)).BeginInit();
             this.SuspendLayout();
             // 
-            // listBox
+            // processGrid
             // 
-            this.listBox.FormattingEnabled = true;
-            this.listBox.Location = new System.Drawing.Point(12, 12);
-            this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(260, 199);
-            this.listBox.TabIndex = 0;
+            this.processGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.processGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.procId,
+            this.procName});
+            this.processGrid.Location = new System.Drawing.Point(12, 12);
+            this.processGrid.Name = "processGrid";
+            this.processGrid.Size = new System.Drawing.Size(260, 200);
+            this.processGrid.TabIndex = 1;
+            // 
+            // procId
+            // 
+            this.procId.HeaderText = "Process ID";
+            this.procId.Name = "procId";
+            // 
+            // procName
+            // 
+            this.procName.HeaderText = "Process Name";
+            this.procName.Name = "procName";
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.listBox);
+            this.Controls.Add(this.processGrid);
             this.Name = "MainWindow";
             this.Text = "ProcessNote 2000";
             this.Load += new System.EventHandler(this.MainWindow_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.processGrid)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.ListBox listBox;
+        private System.Windows.Forms.DataGridView processGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn procId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn procName;
     }
 }
 
