@@ -20,7 +20,7 @@ namespace ProcessNote
         }
 
         private Process[] allProcess;
-        private List<String> comments = new List<string>();
+        private Dictionary<int, String> comments = new Dictionary<int, string>();
 
         private void GetAllProcess()
         {
@@ -63,9 +63,9 @@ namespace ProcessNote
             // Initialize info for current Process
             DataGridView dataGridView = sender as DataGridView;
             int indexOfCurrentRow = dataGridView.CurrentRow.Index;
-            int clickedProcessId = (int)dataGridView.Rows[indexOfCurrentRow].Cells["procId"].Value;
+            int clickedProcessId = (int) dataGridView.Rows[indexOfCurrentRow].Cells["procId"].Value;
             Process clickedProcess = Process.GetProcessById(clickedProcessId);
-           
+
             // Change Label fields for every Data
             mem.Text = clickedProcess.WorkingSet64.ToString();
             SetCpuInfo(clickedProcess.ProcessName);
@@ -75,12 +75,13 @@ namespace ProcessNote
         private void saveComment_Click(object sender, EventArgs e)
         {
             int indexOfCurrentRow = processGrid.CurrentRow.Index;
-            StringBuilder commentStr = new StringBuilder();
-            commentStr.Append("Comment: " + textBoxComment.Text);
-            commentStr.Append("; Process Id: " + (int)processGrid.Rows[indexOfCurrentRow].Cells["procId"].Value);
-            comments.Add(commentStr.ToString());
-            textBoxComment.Clear();
+            int processId = (int) processGrid.Rows[indexOfCurrentRow].Cells["procId"].Value;
+            string comment = textBoxComment.Text;
 
+            comments.Add(processId, comment);
+            commentGrid.Rows.Add(processId, comment);
+
+            textBoxComment.Clear();
         }
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
@@ -91,6 +92,16 @@ namespace ProcessNote
                 e.Cancel = true;
             }
 
+        }
+
+        private void onTop_Click(object sender, EventArgs e)
+        {
+            TopMost = true;
+        }
+
+        private void hide_Click(object sender, EventArgs e)
+        {
+            TopMost = false;
         }
     }
 }
