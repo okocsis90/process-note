@@ -20,7 +20,7 @@ namespace ProcessNote
         }
 
         private Process[] allProcess;
-        private Dictionary<int, String> comments = new Dictionary<int, string>();
+        private List<String> comments = new List<string>();
 
         private void GetAllProcess()
         {
@@ -76,11 +76,12 @@ namespace ProcessNote
         {
             int indexOfCurrentRow = processGrid.CurrentRow.Index;
             int processId = (int) processGrid.Rows[indexOfCurrentRow].Cells["procId"].Value;
-            string comment = textBoxComment.Text;
 
-            comments.Add(processId, comment);
-            commentGrid.Rows.Add(processId, comment);
-
+            StringBuilder commentStr = new StringBuilder();
+            commentStr.Append("Comment: " + textBoxComment.Text);
+            commentStr.Append("; Process Id: " + processId);
+            comments.Add(commentStr.ToString());
+            commentGrid.Rows.Add(processId, textBoxComment.Text);
             textBoxComment.Clear();
         }
 
