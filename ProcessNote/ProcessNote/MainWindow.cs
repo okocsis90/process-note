@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace ProcessNote
 {
@@ -78,6 +79,17 @@ namespace ProcessNote
             commentStr.Append("Comment: " + textBoxComment.Text);
             commentStr.Append("; Process Id: " + (int)processGrid.Rows[indexOfCurrentRow].Cells["procId"].Value);
             comments.Add(commentStr.ToString());
+            textBoxComment.Clear();
+
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (textBoxComment.Text.Length > 0)
+            {
+                MessageBox.Show("Please save before Exit!");
+                e.Cancel = true;
+            }
 
         }
     }

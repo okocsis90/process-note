@@ -174,6 +174,7 @@
             this.Controls.Add(this.processGrid);
             this.Name = "MainWindow";
             this.Text = "ProcessNote 2000";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Load += new System.EventHandler(this.MainWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.processGrid)).EndInit();
             this.ResumeLayout(false);
